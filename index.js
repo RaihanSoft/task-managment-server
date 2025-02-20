@@ -73,6 +73,13 @@ async function run() {
       res.send(result);
     });
 
+    // DELETE API to Remove a Task
+    app.delete("/tasks/:id", async (req, res) => {
+      const { id } = req.params;
+      const query = { _id: new ObjectId(id) };
+      const result = await tasksCollection.deleteOne(query);
+      res.send(result);
+    });
 
 
     // Send a ping to confirm a successful connection
