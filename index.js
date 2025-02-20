@@ -55,42 +55,7 @@ async function run() {
       res.send(result);
     });
 
-    // PUT API to Update a Task
-    app.patch("/tasks/:id", async (req, res) => {
-      const id = req.params.id;
-      const query = { _id: new ObjectId(id) };
-      const taskData = req.body;
-      const updatedDoc = {
-        $set: { ...taskData },
-      };
-      const result = await tasksCollection.updateOne(query, updatedDoc);
-      res.send(result);
-    });
-    app.get("/task/:email", async (req, res) => {
-      const email = req.params.email;
-      const query = { email: email };
-      const result = await tasksCollection.find(query).toArray();
-      res.send(result);
-    });
-
-    // DELETE API to Remove a Task
-    app.delete("/tasks/:id", async (req, res) => {
-      const { id } = req.params;
-      const query = { _id: new ObjectId(id) };
-      const result = await tasksCollection.deleteOne(query);
-      res.send(result);
-    });
-    app.put("/tasks/:id", async (req, res) => {
-      const id = req.params.id;
-      const query = { _id: new ObjectId(id) };
-      const taskData = req.body;
-      const updatedDoc = {
-        $set: { ...taskData },
-      };
-      const result = await tasksCollection.updateOne(query, updatedDoc);
-      res.send(result);
-    });
-
+   
     // Send a ping to confirm a successful connection
     // await client.db("admin").command({ ping: 1 });
     console.log(
